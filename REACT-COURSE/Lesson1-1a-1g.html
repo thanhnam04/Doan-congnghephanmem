@@ -10,15 +10,14 @@
     <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+
     <script type="text/babel">
       // babel is javascript compiler to get others languages into javascript
       /*
       Khi sử dụng React, không dùng js bìh thường mà dùng js tăng cường, cao cấp hơn gọi là JSX = javascript XML
       là thư viện giúp ta có thể viết code HTML bên trong javascript
-      
       */
-      const button = <button>hello</button>;
-
       /*
       const div in react is one element but contains mutiples others element wwhich not fail the program
       */
@@ -26,16 +25,47 @@
       React is a external library(thư viện ngoài)
       code ở bên ngoài, có thể tải code bên ngoài này về website của mình và sử dụng
       */
+      const sock = 10;
+      const tshirt = 8;
+      const productCost = sock+2*tshirt;
+      console.log(productCost);
+      const shippingcost = 5;
+      const total = productCost + shippingcost;
       const div = (
       <div>
-        <button>Hello</button>
-        <p>paragraph in text  {2+2}</p>
+        <p>1a</p>
+        <button>Good job!</button>
+        
+        <p>1b</p>
+        <p>My name is Nguyen Thanh Nam</p>
+
+        <p>1c</p>
+        <p>Cotton socks</p>
+        <p>Price: ${10}</p>
+        <button>Add to cart</button>
+
+        <p>1d</p>
+        <p>Display in console</p>
+
+        <p>1e</p>
+        <p>Product cost: ${productCost}</p>
+
+        <p>1f</p>
+        <p>Product cost: ${productCost}</p>
+        <p>Shipping cost: ${shippingcost}</p>
+        <p>Total cost: ${total}</p>
+        <button>Place your order</button>
+
+        <p>1g</p>
+        display in console
+
       </div>
     );
     /*
     div là container hay vật chứa
     có thể chứa nhiều elements
     */
+   console.log(dayjs().format('MMMM D'));
 
       const container = document.querySelector('.js-container');
       ReactDOM.createRoot(container).render(div);
