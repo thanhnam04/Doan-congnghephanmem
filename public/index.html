@@ -321,11 +321,28 @@ function App() {
                     <h4>Xe của bé</h4>
                     <p>Xe 01 - Tuyến A - Tài xế: Nguyễn Văn A</p>
                     <p>Trạng thái: Đang di chuyển</p>
+                        <h4>Bản đồ theo dõi xe buýt</h4>
                 </div>
                 <div className="bus-map">
-                    <p>Bản đồ theo dõi xe buýt (Mô phỏng)</p>
-                    <p>Vị trí hiện tại: {childBus ? childBus.location : 'Không xác định'}</p>
-                </div>
+                    <div className="bus-map">
+
+    <iframe
+        width="250%"
+        height="420"
+        src="https://maps.google.com/maps?width=100%&amp;height=450&amp;hl=vi&amp;coord=10.759660000323064,106.68192160315813&amp;q=273%20An%20D%C6%B0%C6%A1ng%20V%C6%A1%C6%A1ng%20Ph%C6%B0%E1%BB%9Dng%203%20Qu%E1%BA%ADn%205%20H%E1%BB%93%20Ch%C3%AD%20Minh%20700000%2C%20Vi%E1%BB%87t%20Nam+(Trường%20ĐH%20Sài%20Gòn)&amp;ie=UTF8&amp;t=&amp;z=16&amp;iwloc=B&amp;output=embed"
+        frameBorder="0"
+        scrolling="no"
+        marginHeight="0"
+        marginWidth="0"
+        style={{ borderRadius: '10px', marginTop: '1rem' }}
+    ></iframe>
+{/*
+        <p style={{ marginTop: '0.5rem' }}>
+        Vị trí hiện tại: {childBus ? childBus.location : 'Không xác định'}
+    </p>
+    */}
+</div>
+    </div>
                 <div className="info-card">
                     <h4>Thông báo</h4>
                     {notifications.map(notification => (
