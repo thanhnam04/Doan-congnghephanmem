@@ -10,6 +10,7 @@
     <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
     <script type="text/babel">
 
       function ChatInput()
@@ -22,12 +23,25 @@
           );
       }
 
-      function ChatMessage ()
-      {
+      function ChatMessage (props)
+      { 
+        const message = props.message
+        const sender  = props.sender
+
+        if (sender==='robot')
+          {
+            return (
+              <div>
+              <img src="img/robot.png" width="50" />
+              {message} 
+              </div>
+            )
+          }
+
           return (
             <div>
-            hello chatbot
-            <img src="img/profileImg.png" width="50"/>
+            {message}
+            <img src="img/user.png" width="50"/>
             </div>
           );
       }
@@ -38,11 +52,18 @@
      khi dùng div cho function trên thì inspect web sẽ có thêm 1 thẻ div, do đó để loại bỏ thẻ div ko quan trọng đó ta có thể thay <div></div> bằng <>....</>
      Nó sẽ vẫn là div nhưng khi inspect sẽ mất đi cấp thẻ div không quan trọng đó
      Đây gọi là Fragment, nhóm element nhưng không tạo thêm thẻ div ngoài
+
+     Ngoài ra nếu <></> ko căn chỉnh được dòng thì <div></div> sẽ làm được, nên
+     linh động giữa hai cái để căn chỉnh hoặc làm gọn code hơn
      */
       const app = (
       <>
         <ChatInput />
-        <ChatMessage />
+        <ChatMessage message="Hello chatbot" sender="user" />
+        <ChatMessage message="Hello! How can I help you?" sender="robot" />
+        <ChatMessage message="Can you get me todays date?" sender="user" />
+        <ChatMessage message="Today is September 27" sender="robot"/>
+
       </>
     );
     /*
