@@ -2,10 +2,10 @@ const { useState } = React;
 
 const mockData = {
     buses: [
-        { id: 1, name: 'Xe 01', route: 'Tuyến A', driver: 'Nguyễn Thành Nam', status: 'Đang hoạt động', location: '12.345, 106.789' },
-        { id: 2, name: 'Xe 02', route: 'Tuyến B', driver: 'Trần Đức Anh', status: 'Đang hoạt động', location: '12.356, 106.801' },
-        { id: 3, name: 'Xe 03', route: 'Tuyến C', driver: 'Phạm Kim Chung', status: 'Đang hoạt động', location: '12.340, 106.795' },
-        { id: 4, name: 'Xe 04', route: 'Tuyến D', driver: 'Bùi Tấn Phát', status: 'Đang hoạt động', location: '12.340, 106.702' }
+        { id: 1, name: '01', route: 'Tuyến A', driver: 'Nguyễn Thành Nam', status: 'Đang hoạt động', location: '12.345, 106.789' },
+        { id: 2, name: '02', route: 'Tuyến B', driver: 'Trần Đức Anh', status: 'Đang hoạt động', location: '12.356, 106.801' },
+        { id: 3, name: '03', route: 'Tuyến C', driver: 'Phạm Kim Chung', status: 'Đang hoạt động', location: '12.340, 106.795' },
+        { id: 4, name: '04', route: 'Tuyến D', driver: 'Bùi Tấn Phát', status: 'Đang hoạt động', location: '12.340, 106.702' }
     ],
     students: [
         { id: 1, name: 'Nguyễn Minh An', grade: 'Lớp 1A', bus: 'Xe 01', pickup: 'Điểm A1', status: 'Đã đón', parentPhone: '0123-456-789' },
@@ -57,7 +57,8 @@ const mockData = {
     routes: [
         { id: 1, name: 'Tuyến A', stops: ['Điểm A1', 'Điểm A2', 'Điểm A3'], distance: '15km', duration: '45 phút' },
         { id: 2, name: 'Tuyến B', stops: ['Điểm B1', 'Điểm B2', 'Điểm B3'], distance: '12km', duration: '35 phút' },
-        { id: 3, name: 'Tuyến C', stops: ['Điểm C1', 'Điểm C2', 'Điểm C3'], distance: '18km', duration: '50 phút' }
+        { id: 3, name: 'Tuyến C', stops: ['Điểm C1', 'Điểm C2', 'Điểm C3'], distance: '18km', duration: '50 phút' },
+        { id: 4, name: 'Tuyến D', stops: ['Điểm D1', 'Điểm D2', 'Điểm D3'], distance: '10km', duration: '25 phút' }
     ],
     notifications: [
         { id: 1, type: 'approaching', message: 'Xe buýt đang đến gần điểm đón của bé Nguyễn Minh An', time: '7:45 AM' },
@@ -126,10 +127,26 @@ const ManagerDashboard = ({ data }) => {
                 <div className="panel-content">
                     <div className="info-card">
                         <h4>Tổng quan hệ thống</h4>
-                        <p>Số xe buýt: {data.buses.length}</p>
-                        <p>Số học sinh: {data.students.length}</p>
-                        <p>Số tài xế: {data.drivers.length}</p>
-                        <p>Số tuyến đường: {data.routes.length}</p>
+                        <table className="table table-striped">
+                            <tbody>
+                                <tr>
+                                    <td>Số xe buýt</td>
+                                    <td>{data.buses.length}</td>
+                                </tr>
+                                <tr>
+                                    <td>Số học sinh</td>
+                                    <td>{data.students.length}</td>
+                                </tr>
+                                <tr>
+                                    <td>Số tài xế</td>
+                                    <td>{data.drivers.length}</td>
+                                </tr>
+                                <tr>
+                                    <td>Số tuyến đường</td>
+                                    <td>{data.routes.length}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                     <div className="info-card">
                         <h4>Xe buýt đang hoạt động</h4>
@@ -149,15 +166,49 @@ const ManagerDashboard = ({ data }) => {
                 <div>
                     <div className="info-card">
                         <h4>Danh sách Học sinh</h4>
-                        {data.students.map(student => (
-                            <p key={student.id}>{student.name} - {student.grade} - Xe: {student.bus} - Điểm đón: {student.pickup}</p>
-                        ))}
+                        <table className="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Tên học sinh</th>
+                                    <th>Lớp</th>
+                                    <th>Xe buýt</th>
+                                    <th>Điểm đón</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {data.students.map(student => (
+                                    <tr key={student.id}>
+                                        <td>{student.name}</td>
+                                        <td>{student.grade}</td>
+                                        <td>{student.bus}</td>
+                                        <td>{student.pickup}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
                     <div className="info-card">
                         <h4>Danh sách Tài xế</h4>
-                        {data.drivers.map(driver => (
-                            <p key={driver.id}>{driver.name} - SĐT: {driver.phone} - Xe: {driver.bus} - Trạng thái: {driver.status}</p>
-                        ))}
+                        <table className="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Tên tài xế</th>
+                                    <th>SĐT</th>
+                                    <th>Xe buýt</th>
+                                    <th>Trạng thái</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {data.drivers.map(driver => (
+                                    <tr key={driver.id}>
+                                        <td>{driver.name}</td>
+                                        <td>{driver.phone}</td>
+                                        <td>{driver.bus}</td>
+                                        <td>{driver.status}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             )}
@@ -315,21 +366,19 @@ const ParentDashboard = ({ data }) => {
             <div className="bus-map" id="map" style={{ height: "400px" }}></div>
 
             <div className="info-card">
-                <h4>Thông báo</h4>
-                {data.notifications.map(notification => (
-                    <div key={notification.id} className="notification-item">
-                        <p>{notification.message} - {notification.time}</p>
-                    </div>
-                ))}
-            </div>
-
-            <div className="info-card">
-                <h4>Cảnh báo</h4>
-                {data.alerts.map(alert => (
-                    <div key={alert.id} className="alert-item">
-                        <p>{alert.message} - {alert.time}</p>
-                    </div>
-                ))}
+                <h4>Thông báo và Cảnh báo</h4>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                    {data.notifications.map(notification => (
+                        <div key={notification.id} className="notification-item">
+                            <p>{notification.message} - {notification.time}</p>
+                        </div>
+                    ))}
+                    {data.alerts.map(alert => (
+                        <div key={alert.id} className="alert-item">
+                            <p>{alert.message} - {alert.time}</p>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     );
@@ -415,11 +464,11 @@ function App() {
             <header>
                 <div className="container header-content">
                     <div className="logo">SSB 1.0</div>
-                    <button 
-                        onClick={() => setLoggedIn(false)} 
+                    <button
+                        onClick={() => setLoggedIn(false)}
                         className="btn"
                         style={{
-                            background: 'white', 
+                            background: 'white',
                             color: '#1e5799'
                         }}
                     >
