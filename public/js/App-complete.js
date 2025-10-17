@@ -172,18 +172,35 @@ const DriverDashboard = ({ data }) => {
 const ParentDashboard = ({ data }) => {
     const childBus = data.buses.find(bus => bus.name === 'Xe 01');
 
+    // Dùng useEffect để khởi tạo bản đồ sau khi DOM đã render
+    React.useEffect(() => {
+        if (window.google && document.getElementById("map")) {
+            const sg = { lat: 10.762622, lng: 106.660172 };
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 14,
+                center: sg,
+            });
+            new google.maps.Marker({
+                position: sg,
+                map: map,
+                title: "Đại học Sài Gòn",
+            });
+        }
+    }, []); // chỉ chạy 1 lần sau khi render
+
     return (
         <div>
             <h3 className="panel-title">Bảng điều khiển Phụ huynh</h3>
+
             <div className="info-card">
                 <h4>Xe của bé</h4>
                 <p>Xe 01 - Tuyến A - Tài xế: Nguyễn Văn A</p>
                 <p>Trạng thái: Đang di chuyển</p>
             </div>
-            <div className="bus-map">
-                <p>Bản đồ theo dõi xe buýt (Mô phỏng)</p>
-                <p>Vị trí hiện tại: {childBus ? childBus.location : 'Không xác định'}</p>
-            </div>
+
+            {/* Bản đồ thật */}
+            <div className="bus-map" id="map" style={{ height: "400px" }}></div>
+
             <div className="info-card">
                 <h4>Thông báo</h4>
                 {data.notifications.map(notification => (
@@ -192,6 +209,7 @@ const ParentDashboard = ({ data }) => {
                     </div>
                 ))}
             </div>
+
             <div className="info-card">
                 <h4>Cảnh báo</h4>
                 {data.alerts.map(alert => (
@@ -203,6 +221,7 @@ const ParentDashboard = ({ data }) => {
         </div>
     );
 };
+
 
 function App() {
     const [loggedIn, setLoggedIn] = useState(false);
