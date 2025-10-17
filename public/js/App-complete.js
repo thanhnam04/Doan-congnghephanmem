@@ -11,12 +11,48 @@ const mockData = {
         { id: 1, name: 'Nguyễn Minh An', grade: 'Lớp 1A', bus: 'Xe 01', pickup: 'Điểm A1', status: 'Đã đón', parentPhone: '0123-456-789' },
         { id: 2, name: 'Trần Quốc Bảo', grade: 'Lớp 2B', bus: 'Xe 01', pickup: 'Điểm A2', status: 'Chưa đón', parentPhone: '0987-654-321' },
         { id: 3, name: 'Lê Thị Cẩm', grade: 'Lớp 3C', bus: 'Xe 02', pickup: 'Điểm B1', status: 'Đã đón', parentPhone: '0912-345-678' },
-        { id: 4, name: 'Phạm Văn D', grade: 'Lớp 1A', bus: 'Xe 01', pickup: 'Điểm A3', status: 'Chưa đón', parentPhone: '0934-567-890' }
+        { id: 4, name: 'Phạm Văn Phúc', grade: 'Lớp 1A', bus: 'Xe 01', pickup: 'Điểm A3', status: 'Chưa đón', parentPhone: '0934-567-890' },
+        { id: 5, name: 'Hoàng Thị Dung', grade: 'Lớp 1B', bus: 'Xe 02', pickup: 'Điểm B2', status: 'Đã đón', parentPhone: '0956-789-012' },
+        { id: 6, name: 'Đỗ Văn Minh', grade: 'Lớp 2A', bus: 'Xe 03', pickup: 'Điểm C1', status: 'Chưa đón', parentPhone: '0978-901-234' },
+        { id: 7, name: 'Bùi Thị Lan', grade: 'Lớp 3A', bus: 'Xe 04', pickup: 'Điểm D1', status: 'Đã đón', parentPhone: '0990-123-456' },
+        { id: 8, name: 'Vũ Quốc Anh', grade: 'Lớp 1A', bus: 'Xe 01', pickup: 'Điểm A1', status: 'Chưa đón', parentPhone: '0911-234-567' },
+        { id: 9, name: 'Ngô Thị Mai', grade: 'Lớp 2B', bus: 'Xe 02', pickup: 'Điểm B3', status: 'Đã đón', parentPhone: '0933-456-789' },
+        { id: 10, name: 'Đinh Văn Tùng', grade: 'Lớp 3C', bus: 'Xe 03', pickup: 'Điểm C2', status: 'Chưa đón', parentPhone: '0955-678-901' },
+        { id: 11, name: 'Trần Thị Hoa', grade: 'Lớp 1B', bus: 'Xe 04', pickup: 'Điểm D2', status: 'Đã đón', parentPhone: '0977-890-123' },
+        { id: 12, name: 'Lê Văn Sơn', grade: 'Lớp 2A', bus: 'Xe 01', pickup: 'Điểm A2', status: 'Chưa đón', parentPhone: '0999-012-345' },
+        { id: 13, name: 'Phạm Thị Linh', grade: 'Lớp 3B', bus: 'Xe 02', pickup: 'Điểm B1', status: 'Đã đón', parentPhone: '0910-123-456' },
+        { id: 14, name: 'Hoàng Văn Đức', grade: 'Lớp 1A', bus: 'Xe 03', pickup: 'Điểm C3', status: 'Chưa đón', parentPhone: '0932-345-678' },
+        { id: 15, name: 'Đỗ Thị Nga', grade: 'Lớp 2C', bus: 'Xe 04', pickup: 'Điểm D3', status: 'Đã đón', parentPhone: '0954-567-890' },
+        { id: 16, name: 'Bùi Văn Hùng', grade: 'Lớp 3A', bus: 'Xe 01', pickup: 'Điểm A3', status: 'Chưa đón', parentPhone: '0976-789-012' },
+        { id: 17, name: 'Vũ Thị Thu', grade: 'Lớp 1B', bus: 'Xe 02', pickup: 'Điểm B2', status: 'Đã đón', parentPhone: '0998-901-234' },
+        { id: 18, name: 'Ngô Văn Long', grade: 'Lớp 2A', bus: 'Xe 03', pickup: 'Điểm C1', status: 'Chưa đón', parentPhone: '0912-123-456' },
+        { id: 19, name: 'Đinh Thị Hạnh', grade: 'Lớp 3C', bus: 'Xe 04', pickup: 'Điểm D1', status: 'Đã đón', parentPhone: '0934-345-678' },
+        { id: 20, name: 'Trần Văn Tâm', grade: 'Lớp 1A', bus: 'Xe 01', pickup: 'Điểm A1', status: 'Chưa đón', parentPhone: '0956-567-890' },
+        { id: 21, name: 'Lê Thị Vân', grade: 'Lớp 2B', bus: 'Xe 02', pickup: 'Điểm B3', status: 'Đã đón', parentPhone: '0978-789-012' },
+        { id: 22, name: 'Phạm Văn Khoa', grade: 'Lớp 3A', bus: 'Xe 03', pickup: 'Điểm C2', status: 'Chưa đón', parentPhone: '0990-901-234' },
+        { id: 23, name: 'Hoàng Thị Trang', grade: 'Lớp 1B', bus: 'Xe 04', pickup: 'Điểm D2', status: 'Đã đón', parentPhone: '0911-123-456' },
+        { id: 24, name: 'Đỗ Văn Huy', grade: 'Lớp 2C', bus: 'Xe 01', pickup: 'Điểm A2', status: 'Chưa đón', parentPhone: '0933-345-678' },
+        { id: 25, name: 'Bùi Thị Hà', grade: 'Lớp 3B', bus: 'Xe 02', pickup: 'Điểm B1', status: 'Đã đón', parentPhone: '0955-567-890' },
+        { id: 26, name: 'Vũ Văn Nam', grade: 'Lớp 1A', bus: 'Xe 03', pickup: 'Điểm C3', status: 'Chưa đón', parentPhone: '0977-789-012' },
+        { id: 27, name: 'Ngô Thị Lan', grade: 'Lớp 2A', bus: 'Xe 04', pickup: 'Điểm D3', status: 'Đã đón', parentPhone: '0999-901-234' },
+        { id: 28, name: 'Đinh Văn Bình', grade: 'Lớp 3C', bus: 'Xe 01', pickup: 'Điểm A3', status: 'Chưa đón', parentPhone: '0910-123-456' },
+        { id: 29, name: 'Trần Thị Mai', grade: 'Lớp 1B', bus: 'Xe 02', pickup: 'Điểm B2', status: 'Đã đón', parentPhone: '0932-345-678' },
+        { id: 30, name: 'Lê Văn Tùng', grade: 'Lớp 2B', bus: 'Xe 03', pickup: 'Điểm C1', status: 'Chưa đón', parentPhone: '0954-567-890' },
+        { id: 31, name: 'Phạm Thị Hoa', grade: 'Lớp 3A', bus: 'Xe 04', pickup: 'Điểm D1', status: 'Đã đón', parentPhone: '0976-789-012' },
+        { id: 32, name: 'Hoàng Văn Sơn', grade: 'Lớp 1A', bus: 'Xe 01', pickup: 'Điểm A1', status: 'Chưa đón', parentPhone: '0998-901-234' },
+        { id: 33, name: 'Đỗ Thị Linh', grade: 'Lớp 2C', bus: 'Xe 02', pickup: 'Điểm B3', status: 'Đã đón', parentPhone: '0912-123-456' },
+        { id: 34, name: 'Bùi Văn Đức', grade: 'Lớp 3B', bus: 'Xe 03', pickup: 'Điểm C2', status: 'Chưa đón', parentPhone: '0934-345-678' },
+        { id: 35, name: 'Vũ Thị Nga', grade: 'Lớp 1B', bus: 'Xe 04', pickup: 'Điểm D2', status: 'Đã đón', parentPhone: '0956-567-890' },
+        { id: 36, name: 'Ngô Văn Hùng', grade: 'Lớp 2A', bus: 'Xe 01', pickup: 'Điểm A2', status: 'Chưa đón', parentPhone: '0978-789-012' },
+        { id: 37, name: 'Đinh Thị Thu', grade: 'Lớp 3C', bus: 'Xe 02', pickup: 'Điểm B1', status: 'Đã đón', parentPhone: '0990-901-234' },
+        { id: 38, name: 'Trần Văn Long', grade: 'Lớp 1A', bus: 'Xe 03', pickup: 'Điểm C3', status: 'Chưa đón', parentPhone: '0911-123-456' },
+        { id: 39, name: 'Lê Thị Hạnh', grade: 'Lớp 2B', bus: 'Xe 04', pickup: 'Điểm D3', status: 'Đã đón', parentPhone: '0933-345-678' }
     ],
     drivers: [
         { id: 1, name: 'Nguyễn Thành Nam', phone: '0123-456-789', bus: 'Xe 01', status: 'Đang làm việc' },
         { id: 2, name: 'Trần Đức Anh', phone: '0987-654-321', bus: 'Xe 02', status: 'Đang làm việc' },
-        { id: 3, name: 'Bùi Tấn Phát', phone: '0912-345-678', bus: 'Xe 03', status: 'Nghỉ phép' }
+        { id: 3, name: 'Bùi Tấn Phát', phone: '0912-345-678', bus: 'Xe 03', status: 'Nghỉ phép' },
+        { id: 4, name: 'Phạm Kim Chung', phone: '0912-345-953', bus: 'Xe 04', status: 'Đang làm việc' }
     ],
     routes: [
         { id: 1, name: 'Tuyến A', stops: ['Điểm A1', 'Điểm A2', 'Điểm A3'], distance: '15km', duration: '45 phút' },
@@ -42,6 +78,7 @@ const ManagerDashboard = ({ data }) => {
     const [activeTab, setActiveTab] = useState('overview');
     const [message, setMessage] = useState('');
     const [selectedRecipient, setSelectedRecipient] = useState('');
+    const [schedule, setSchedule] = useState(null);
 
     const sendMessage = () => {
         if (message && selectedRecipient) {
@@ -49,6 +86,30 @@ const ManagerDashboard = ({ data }) => {
             setMessage('');
             setSelectedRecipient('');
         }
+    };
+
+    const generateWeeklySchedule = () => {
+        const days = ['Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy'];
+        const weeklySchedule = days.map(day => ({
+            day,
+            buses: data.buses.map(bus => ({
+                name: bus.name,
+                route: bus.route,
+                driver: bus.driver
+            }))
+        }));
+        setSchedule({ type: 'weekly', data: weeklySchedule });
+    };
+
+    const generateMonthlySchedule = () => {
+        const currentMonth = new Date().toLocaleString('vi-VN', { month: 'long', year: 'numeric' });
+        const monthlySchedule = data.buses.map(bus => ({
+            bus: bus.name,
+            route: bus.route,
+            driver: bus.driver,
+            days: 30 // Assuming 30 days for simplicity
+        }));
+        setSchedule({ type: 'monthly', month: currentMonth, data: monthlySchedule });
     };
 
     return (
@@ -105,9 +166,28 @@ const ManagerDashboard = ({ data }) => {
                 <div className="panel-content">
                     <div className="info-card">
                         <h4>Tạo/Cập nhật Lịch trình</h4>
-                        <button onClick={() => alert('Tạo lịch trình tuần')} className="btn btn-info" style={{marginRight: '0.5rem'}}>Tạo lịch trình tuần</button>
-                        <button onClick={() => alert('Tạo lịch trình tháng')} className="btn btn-info">Tạo lịch trình tháng</button>
+                        <button onClick={generateWeeklySchedule} className="btn btn-info" style={{marginRight: '0.5rem'}}>Tạo lịch trình tuần</button>
+                        <button onClick={generateMonthlySchedule} className="btn btn-info">Tạo lịch trình tháng</button>
                     </div>
+                    {schedule && (
+                        <div className="info-card" style={{marginTop: '1rem'}}>
+                            <h4>{schedule.type === 'weekly' ? 'Lịch trình Tuần' : `Lịch trình Tháng ${schedule.month}`}</h4>
+                            {schedule.type === 'weekly' ? (
+                                schedule.data.map(daySchedule => (
+                                    <div key={daySchedule.day}>
+                                        <h5>{daySchedule.day}</h5>
+                                        {daySchedule.buses.map(bus => (
+                                            <p key={bus.name}>{bus.name} - {bus.route} - Tài xế: {bus.driver}</p>
+                                        ))}
+                                    </div>
+                                ))
+                            ) : (
+                                schedule.data.map(busSchedule => (
+                                    <p key={busSchedule.bus}>{busSchedule.bus} - {busSchedule.route} - Tài xế: {busSchedule.driver} - {busSchedule.days} ngày</p>
+                                ))
+                            )}
+                        </div>
+                    )}
                 </div>
             )}
 
