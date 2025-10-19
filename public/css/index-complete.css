@@ -85,6 +85,14 @@ header {
     font-weight: bold;
     transition: all 0.3s ease;
 }
+.btn:hover {
+  background: #1e5799;
+  color: white;
+  box-shadow:
+    0 6px 12px rgba(30, 87, 153, 0.35),
+    0 0 10px rgba(30, 87, 153, 0.2);
+  transform: translateY(-3px);
+}
 
 .btn-primary {
     background: #1e5799;

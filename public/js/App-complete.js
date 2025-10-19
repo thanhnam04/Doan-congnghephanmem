@@ -80,6 +80,10 @@ const ManagerDashboard = ({ data }) => {
     const [message, setMessage] = useState('');
     const [selectedRecipient, setSelectedRecipient] = useState('');
     const [schedule, setSchedule] = useState(null);
+    const [savedSchedules, setSavedSchedules] = useState(() => {
+        const saved = localStorage.getItem('savedSchedules');
+        return saved ? JSON.parse(saved) : [];
+    });
 
     const sendMessage = () => {
         if (message && selectedRecipient) {
@@ -110,7 +114,12 @@ const ManagerDashboard = ({ data }) => {
             driver: bus.driver,
             days: 30 // Assuming 30 days for simplicity
         }));
-        setSchedule({ type: 'monthly', month: currentMonth, data: monthlySchedule });
+        const newSchedule = { type: 'monthly', month: currentMonth, data: monthlySchedule, id: Date.now() };
+        setSchedule(newSchedule);
+        const updatedSchedules = [...savedSchedules, newSchedule];
+        setSavedSchedules(updatedSchedules);
+        localStorage.setItem('savedSchedules', JSON.stringify(updatedSchedules));
+        alert('Lịch trình tháng đã được tạo và lưu thành công!');
     };
 
     return (
@@ -386,15 +395,33 @@ const ParentDashboard = ({ data }) => {
 
 
 function App() {
+    const [currentView, setCurrentView] = useState('landing');
+    const [selectedRole, setSelectedRole] = useState('');
     const [loggedIn, setLoggedIn] = useState(false);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [role, setRole] = useState('');
     const [data] = useState(mockData);
 
+    const handleAboutClick = () => {
+        setCurrentView('about');
+    };
+
+    const handleBackToLanding = () => {
+        setCurrentView('landing');
+        setSelectedRole('');
+        setUsername('');
+        setPassword('');
+    };
+
+    const handleRoleSelect = (role) => {
+        setSelectedRole(role);
+        setCurrentView('login');
+    };
+
     const handleLogin = (e) => {
         e.preventDefault();
-        const user = accounts.find(acc => acc.username === username && acc.password === password);
+        const user = accounts.find(acc => acc.username === username && acc.password === password && acc.role === selectedRole);
         if (user) {
             setRole(user.role);
             setLoggedIn(true);
@@ -404,59 +431,251 @@ function App() {
     };
 
     if (!loggedIn) {
-        return (
-            <div style={{
-                display: 'flex',
-                height: '100vh',
-                justifyContent: 'center',
-                alignItems: 'center',
-                background: 'linear-gradient(135deg, #1e5799 0%, #207cca 100%)',
-                color: 'white'
-            }}>
+        if (currentView === 'landing') {
+            return (
                 <div style={{
-                    background: 'white',
-                    color: '#333',
-                    padding: '2rem 3rem',
-                    borderRadius: '10px',
-                    boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
-                    width: '350px',
-                    textAlign: 'center'
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: '100vh',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    background: 'linear-gradient(135deg, #1e5799 0%, #207cca 100%)',
+                    color: 'white'
                 }}>
-                    <h2 style={{ color: '#1e5799', marginBottom: '1rem' }}>Đăng nhập SSB 1.0</h2>
-                    <form onSubmit={handleLogin}>
-                        <div style={{ marginBottom: '1rem' }}>
-                            <input 
-                                type="text" 
-                                placeholder="Tên đăng nhập" 
-                                value={username} 
-                                onChange={(e) => setUsername(e.target.value)} 
-                                required
-                                className="form-control"
-                            />
+                    <div style={{
+                        background: 'white',
+                        color: '#333',
+                        padding: '4rem 5rem',
+                        borderRadius: '15px',
+                        boxShadow: '0 8px 20px rgba(0,0,0,0.3)',
+                        textAlign: 'center',
+                        maxWidth: '600px',
+                        position: 'relative'
+                    }}>
+                        <div style={{ position: 'absolute', top: '1rem', right: '1rem', display: 'flex', gap: '0.5rem' }}>
+                            <button className="btn btn-link" style={{ fontSize: '0.9rem', padding: '0.25rem 0.5rem' }} onClick={() => alert("🚌 HỆ THỐNG THEO DÕI XE BUÝT TRƯỜNG HỌC THÔNG MINH - SSB 1.0\n\n" +
+  "🔹 Quản lý:\n" +
+  "• Xem tổng quan học sinh, tài xế, xe buýt và tuyến đường\n" +
+  "• Tạo và cập nhật lịch trình tuần/tháng\n" +
+  "• Phân công xe và tài xế cho từng tuyến\n" +
+  "• Theo dõi vị trí xe theo thời gian thực (độ trễ ≤ 3 giây)\n" +
+  "• Gửi tin nhắn đến tài xế hoặc phụ huynh\n\n" +
+  "🔹 Tài xế:\n" +
+  "• Xem lịch làm việc hàng ngày và tuyến đường được giao\n" +
+  "• Xem danh sách học sinh cần đón/trả cùng điểm đón\n" +
+  "• Báo cáo trạng thái đã đón hoặc đã trả\n" +
+  "• Gửi cảnh báo khi xảy ra sự cố\n\n" +
+  "🔹 Phụ huynh:\n" +
+  "• Theo dõi vị trí xe của con theo thời gian thực\n" +
+  "• Nhận thông báo khi xe đến gần điểm đón\n" +
+  "• Nhận cảnh báo nếu xe trễ hoặc có sự cố\n\n" +
+  "💡 Hệ thống hỗ trợ thời gian thực cho tối đa 300 xe, có thể mở rộng cho web và mobile.")}>Tính năng</button>
+                            <button className="btn btn-link" style={{ fontSize: '0.9rem', padding: '0.25rem 0.5rem' }} onClick={() => alert('Liên hệ')}>Liên hệ</button>
+                            <button className="btn btn-link" style={{ fontSize: '0.9rem', padding: '0.25rem 0.5rem' }} onClick={handleAboutClick}>Về chúng tôi</button>
                         </div>
-                        <div style={{ marginBottom: '1rem' }}>
-                            <input 
-                                type="password" 
-                                placeholder="Mật khẩu" 
-                                value={password} 
-                                onChange={(e) => setPassword(e.target.value)} 
-                                required
-                                className="form-control"
-                            />
+                        <h1 style={{ color: '#1e5799', marginBottom: '2rem', fontSize: '2.5rem' }}>SSB 1.0</h1>
+                        <h2 style={{ marginBottom: '2rem', color: '#555' }}>Hệ thống theo dõi xe buýt trường học thông minh</h2>
+                        <p style={{ marginBottom: '2rem', fontSize: '1.1rem' }}>Chọn vai trò của bạn để tiếp tục</p>
+                        <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem', justifyContent: 'center', marginBottom: '1rem' }}>
+                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                <button onClick={() => handleRoleSelect('parent')} className="btn btn-primary" style={{ padding: '0.75rem 1.5rem', fontSize: '1.1rem' }}>
+                                    Phụ huynh
+                                </button>
+                                <div style={{ fontSize: '0.9rem', color: '#666', marginTop: '0.5rem', textAlign: 'center', padding: '0.75rem 1.5rem' }}>
+                                    <p>Theo dõi xe buýt, nhận thông báo khi xe đến điểm đưa-đón và cảnh báo</p>
+                                </div>
+                            </div>
+                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                <button onClick={() => handleRoleSelect('driver')} className="btn btn-success" style={{ padding: '0.75rem 1.5rem', fontSize: '1.1rem' }}>
+                                    Tài xế
+                                </button>
+                                <div style={{ fontSize: '0.9rem', color: '#666', marginTop: '0.5rem', textAlign: 'center', padding: '0.75rem 1.5rem' }}>
+                                    <p>Lịch trình, hành trình di chuyển hàng ngày, thông tin cho Phụ Huynh về học sinh</p>
+                                </div>
+                            </div>
+                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                <button onClick={() => handleRoleSelect('manager')} className="btn btn-info" style={{ padding: '0.75rem 1.5rem', fontSize: '1.1rem' }}>
+                                    Quản lý
+                                </button>
+                                <div style={{ fontSize: '0.9rem', color: '#666', marginTop: '0.5rem', textAlign: 'center', padding: '0.75rem 1.5rem' }}>
+                                    <p>Xem danh sách học sinh, tài xế xe buýt và tuyến đường</p>
+                                </div>
+                            </div>
                         </div>
-                        <button type="submit" className="btn btn-primary" style={{ width: '100%' }}>
-                            Đăng nhập
-                        </button>
-                    </form>
-                    <p style={{ marginTop: '1rem', fontSize: '0.9rem' }}>
-                        <strong>Tài khoản mẫu:</strong><br/>
-                        Quản lý: manager / 123<br/>
-                        Tài xế: driver / 123<br/>
-                        Phụ huynh: parent / 123
-                    </p>
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        } else if (currentView === 'login') {
+            return (
+                <div style={{
+                    display: 'flex',
+                    height: '100vh',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    background: 'linear-gradient(135deg, #1e5799 0%, #207cca 100%)',
+                    color: 'white'
+                }}>
+                    <div style={{
+                        background: 'white',
+                        color: '#333',
+                        padding: '2rem 3rem',
+                        borderRadius: '10px',
+                        boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
+                        width: '350px',
+                        textAlign: 'center',
+                        position: 'relative'
+                    }}>
+                        <div style={{ position: 'absolute', top: '1rem', right: '1rem', display: 'flex', gap: '0.5rem' }}>
+                            <button className="btn btn-link" style={{ fontSize: '0.9rem', padding: '0.25rem 0.5rem' }} onClick={() => alert('Tính năng')}>Tính năng</button>
+                            <button className="btn btn-link" style={{ fontSize: '0.9rem', padding: '0.25rem 0.5rem' }} onClick={() => alert('Liên hệ')}>Liên hệ</button>
+                            <button className="btn btn-link" style={{ fontSize: '0.9rem', padding: '0.25rem 0.5rem' }} onClick={() => alert('Về chúng tôi')}>Về chúng tôi</button>
+                        </div>
+                        <h2 style={{ color: '#1e5799', marginBottom: '0.5rem' }}>Đăng nhập SSB 1.0</h2>
+                        <p style={{ marginBottom: '1rem', color: '#666' }}>
+                            Đăng nhập với vai trò: <strong>{selectedRole === 'parent' ? 'Phụ huynh' : selectedRole === 'driver' ? 'Tài xế' : 'Quản lý'}</strong>
+                        </p>
+                        <form onSubmit={handleLogin}>
+                            <div style={{ marginBottom: '1rem' }}>
+                                <input 
+                                    type="text" 
+                                    placeholder="Tên đăng nhập" 
+                                    value={username} 
+                                    onChange={(e) => setUsername(e.target.value)} 
+                                    required
+                                    className="form-control"
+                                />
+                            </div>
+                            <div style={{ marginBottom: '1rem' }}>
+                                <input 
+                                    type="password" 
+                                    placeholder="Mật khẩu" 
+                                    value={password} 
+                                    onChange={(e) => setPassword(e.target.value)} 
+                                    required
+                                    className="form-control"
+                                />
+                            </div>
+                            <button type="submit" className="btn btn-primary" style={{ width: '100%', marginBottom: '1rem' }}>
+                                Đăng nhập
+                            </button>
+                            <button type="button" onClick={handleBackToLanding} className="btn btn-secondary" style={{ width: '100%' }}>
+                                Quay lại
+                            </button>
+                        </form>
+                        <p style={{ marginTop: '1rem', fontSize: '0.9rem' }}>
+                            <strong>Tài khoản mẫu:</strong><br/>
+                            {selectedRole === 'manager' && 'Quản lý: manager / 123'}
+                            {selectedRole === 'driver' && 'Tài xế: driver / 123'}
+                            {selectedRole === 'parent' && 'Phụ huynh: parent / 123'}
+                        </p>
+
+                    </div>
+
+                </div>
+
+            );
+
+        } else if (currentView === 'about') {
+
+            return (
+
+                <div style={{
+
+                    display: 'flex',
+
+                    flexDirection: 'column',
+
+                    height: '100vh',
+
+                    justifyContent: 'center',
+
+                    alignItems: 'center',
+
+                    background: 'linear-gradient(135deg, #1e5799 0%, #207cca 100%)',
+
+                    color: 'white'
+
+                }}>
+
+                    <div style={{
+
+                        background: 'white',
+
+                        color: '#333',
+
+                        padding: '4rem 5rem',
+
+                        borderRadius: '15px',
+
+                        boxShadow: '0 8px 20px rgba(0,0,0,0.3)',
+
+                        textAlign: 'center',
+
+                        maxWidth: '600px',
+
+                        position: 'relative'
+
+                    }}>
+
+                        <h1 style={{ color: '#1e5799', marginBottom: '2rem', fontSize: '2.5rem' }}>Về SSB 1.0</h1>
+
+<p style={{ marginBottom: '2rem', fontSize: '1.1rem' }}>
+  Hệ thống theo dõi xe buýt trường học thông minh tập làm bởi nhóm 4 Chú bé Cưte
+</p>
+
+<p>Phiên bản: 1.0</p>
+<p>Năm phát triển: HK1 - Year4 - 2025</p>
+
+<h4 style={{ marginTop: '1.5rem', color: '#1e5799' }}>Thành viên nhóm</h4>
+
+<table
+  style={{
+    width: '100%',
+    borderCollapse: 'collapse',
+    marginTop: '0.5rem',
+    fontSize: '1rem',
+    boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+    borderRadius: '8px',
+    overflow: 'hidden'
+  }}
+>
+  <thead style={{ backgroundColor: '#1e5799', color: 'white' }}>
+    <tr>
+      <th style={{ padding: '10px', textAlign: 'center' }}>MSSV</th>
+      <th style={{ padding: '10px', textAlign: 'center' }}>Họ và Tên</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style={{ padding: '10px', borderBottom: '1px solid #ddd' }}>3122480034</td>
+      <td style={{ padding: '10px', borderBottom: '1px solid #ddd' }}>Nguyễn Thành Nam</td>
+    </tr>
+    <tr>
+      <td style={{ padding: '10px', borderBottom: '1px solid #ddd' }}>3122480001</td>
+      <td style={{ padding: '10px', borderBottom: '1px solid #ddd' }}>Trần Đức Anh</td>
+    </tr>
+    <tr>
+      <td style={{ padding: '10px', borderBottom: '1px solid #ddd' }}>3122480006</td>
+      <td style={{ padding: '10px', borderBottom: '1px solid #ddd' }}>Phạm Kim Chung</td>
+    </tr>
+    <tr>
+      <td style={{ padding: '10px' }}>3122480042</td>
+      <td style={{ padding: '10px' }}>Bùi Tấn Phát</td>
+    </tr>
+  </tbody>
+</table>
+
+
+                        <button onClick={handleBackToLanding} className="btn btn-primary" style={{ marginTop: '2rem' }}>Quay lại</button>
+
+                    </div>
+
+                </div>
+
+            );
+
+        }
+
     }
 
     return (
@@ -465,7 +684,14 @@ function App() {
                 <div className="container header-content">
                     <div className="logo">SSB 1.0</div>
                     <button
-                        onClick={() => setLoggedIn(false)}
+                        onClick={() => {
+                            setLoggedIn(false);
+                            setCurrentView('landing');
+                            setSelectedRole('');
+                            setUsername('');
+                            setPassword('');
+                            setRole('');
+                        }}
                         className="btn"
                         style={{
                             background: 'white',
