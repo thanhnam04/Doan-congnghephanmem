@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -5,7 +7,7 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Nunito', sans-serif;
     line-height: 1.6;
     color: #333;
     background-color: #f4f4f4;
@@ -95,18 +97,20 @@ header {
 }
 
 .btn-primary {
-    background: #1e5799;
+    background: #049578;
     color: white;
+    width: 154px;
 }
 
 .btn-secondary {
-    background: #6c757d;
+    background: #049578;
     color: white;
 }
 
 .btn-success {
-    background: #28a745;
+    background: #049578;
     color: white;
+    width: 130px;
 }
 
 .btn-warning {
@@ -120,8 +124,9 @@ header {
 }
 
 .btn-info {
-    background: #007bff;
+    background: #049578;
     color: white;
+    width: 160px;
 }
 
 .tab-buttons {
@@ -178,3 +183,33 @@ header {
         gap: 0.5rem;
     }
 }
+
+
+/*
+BEGIN 
+Mô tả cho các ACTOR ở giao diện TỔNG QUÁT chưa log vào
+*/
+
+.Description-PH { 
+    border: 0.5px solid #666;
+    border-radius: 10px;
+    width: 154px;      
+    height: 120px;    
+}
+
+.Description-TX { 
+    border: 0.5px solid #666;
+    border-radius: 10px;
+    width: 130px;      
+    height: 120px;  
+}
+
+.Description-QL { 
+    border: 0.5px solid #666;
+    border-radius: 10px;
+    width: 160px;      
+    height: 120px;  
+}
+/*
+END
+*/

@@ -439,17 +439,18 @@ function App() {
                     height: '100vh',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    background: 'linear-gradient(135deg, #1e5799 0%, #207cca 100%)',
+                    background: 'linear-gradient(135deg, #2488df 0%, #b6a4ff 100%)',
+                    // background: 'linear-gradient(135deg, #1e5799 0%, #207cca 100%)',
                     color: 'white'
                 }}>
                     <div style={{
-                        background: 'white',
+                        background: 'linear-gradient(180deg, #ffffff 0%, #f8f4ff 100%)',
                         color: '#333',
                         padding: '4rem 5rem',
                         borderRadius: '15px',
                         boxShadow: '0 8px 20px rgba(0,0,0,0.3)',
                         textAlign: 'center',
-                        maxWidth: '600px',
+                        maxWidth: '700px',
                         position: 'relative'
                     }}>
                         <div style={{ position: 'absolute', top: '1rem', right: '1rem', display: 'flex', gap: '0.5rem' }}>
@@ -474,15 +475,16 @@ function App() {
                             <button className="btn btn-link" style={{ fontSize: '0.9rem', padding: '0.25rem 0.5rem' }} onClick={handleAboutClick}>Về chúng tôi</button>
                         </div>
                         <h1 style={{ color: '#1e5799', marginBottom: '2rem', fontSize: '2.5rem' }}>SSB 1.0</h1>
-                        <h2 style={{ marginBottom: '2rem', color: '#555' }}>Hệ thống theo dõi xe buýt trường học thông minh</h2>
+                        <h1 style={{ marginBottom: '2rem', color: '#555', padding :'0.75rem 0rem', }}>Hệ thống theo dõi xe buýt trường học thông minh</h1>
                         <p style={{ marginBottom: '2rem', fontSize: '1.1rem' }}>Chọn vai trò của bạn để tiếp tục</p>
                         <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem', justifyContent: 'center', marginBottom: '1rem' }}>
                             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                <button onClick={() => handleRoleSelect('parent')} className="btn btn-primary" style={{ padding: '0.75rem 1.5rem', fontSize: '1.1rem' }}>
+                                <button onClick={() => handleRoleSelect('parent')} className="btn btn-primary" style={{ padding: '0.75rem 1.2rem', fontSize: '1.1rem' }}>
                                     Phụ huynh
                                 </button>
-                                <div style={{ fontSize: '0.9rem', color: '#666', marginTop: '0.5rem', textAlign: 'center', padding: '0.75rem 1.5rem' }}>
-                                    <p>Theo dõi xe buýt, nhận thông báo khi xe đến điểm đưa-đón và cảnh báo</p>
+                                <div style={{ fontSize: '0.9rem', color: '#666', marginTop: '0.5rem', textAlign: 'center', padding: '0.75rem 0.5rem' }}>
+                                    <p class="Description-PH">Theo dõi tuyến xe buýt.<br></br>
+                                         Nhận thông báo khi xe đến điểm đưa, đón và cảnh báo cho Phụ huynh.</p>
                                 </div>
                             </div>
                             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -490,15 +492,15 @@ function App() {
                                     Tài xế
                                 </button>
                                 <div style={{ fontSize: '0.9rem', color: '#666', marginTop: '0.5rem', textAlign: 'center', padding: '0.75rem 1.5rem' }}>
-                                    <p>Lịch trình, hành trình di chuyển hàng ngày, thông tin cho Phụ Huynh về học sinh</p>
+                                    <p class="Description-TX">Lịch trình, hành trình di chuyển hàng ngày, thông tin cho Phụ Huynh về học sinh.</p>
                                 </div>
                             </div>
                             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                <button onClick={() => handleRoleSelect('manager')} className="btn btn-info" style={{ padding: '0.75rem 1.5rem', fontSize: '1.1rem' }}>
+                                <button onClick={() => handleRoleSelect('manager')} className="btn btn-info" style={{ padding: '0.75rem 1.4rem', fontSize: '1.1rem' }}>
                                     Quản lý
                                 </button>
-                                <div style={{ fontSize: '0.9rem', color: '#666', marginTop: '0.5rem', textAlign: 'center', padding: '0.75rem 1.5rem' }}>
-                                    <p>Xem danh sách học sinh, tài xế xe buýt và tuyến đường</p>
+                                <div style={{ fontSize: '0.9rem', color: '#666', marginTop: '0.5rem', textAlign: 'center', padding: '0.75rem 1.1rem' }}>
+                                    <p class="Description-QL">Xem danh sách học sinh, tài xế xe buýt và tuyến đường.</p>
                                 </div>
                             </div>
                         </div>
@@ -522,14 +524,8 @@ function App() {
                         borderRadius: '10px',
                         boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
                         width: '350px',
-                        textAlign: 'center',
-                        position: 'relative'
+                        textAlign: 'center'
                     }}>
-                        <div style={{ position: 'absolute', top: '1rem', right: '1rem', display: 'flex', gap: '0.5rem' }}>
-                            <button className="btn btn-link" style={{ fontSize: '0.9rem', padding: '0.25rem 0.5rem' }} onClick={() => alert('Tính năng')}>Tính năng</button>
-                            <button className="btn btn-link" style={{ fontSize: '0.9rem', padding: '0.25rem 0.5rem' }} onClick={() => alert('Liên hệ')}>Liên hệ</button>
-                            <button className="btn btn-link" style={{ fontSize: '0.9rem', padding: '0.25rem 0.5rem' }} onClick={() => alert('Về chúng tôi')}>Về chúng tôi</button>
-                        </div>
                         <h2 style={{ color: '#1e5799', marginBottom: '0.5rem' }}>Đăng nhập SSB 1.0</h2>
                         <p style={{ marginBottom: '1rem', color: '#666' }}>
                             Đăng nhập với vai trò: <strong>{selectedRole === 'parent' ? 'Phụ huynh' : selectedRole === 'driver' ? 'Tài xế' : 'Quản lý'}</strong>
