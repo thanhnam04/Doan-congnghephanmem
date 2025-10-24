@@ -130,6 +130,7 @@ const ManagerDashboard = ({ data }) => {
                 <button onClick={() => setActiveTab('lists')} className={`btn ${activeTab === 'lists' ? 'btn-primary' : 'btn-secondary'}`}>Danh sách</button>
                 <button onClick={() => setActiveTab('manage')} className={`btn ${activeTab === 'manage' ? 'btn-primary' : 'btn-secondary'}`}>Quản lý</button>
                 <button onClick={() => setActiveTab('messages')} className={`btn ${activeTab === 'messages' ? 'btn-primary' : 'btn-secondary'}`}>Tin nhắn</button>
+                <button onClick={() => setActiveTab('overviewparent')} className={`btn ${activeTab === 'overviewparent' ? 'btn-primary' : 'btn-secondary'}`}>Phụ huynh</button>
             </div>
 
             {activeTab === 'overview' && (
@@ -152,6 +153,61 @@ const ManagerDashboard = ({ data }) => {
                                 </tr>
                                 <tr>
                                     <td>Số tuyến đường</td>
+                                    <td>{data.routes.length}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className="info-card">
+                        <h4>Xe buýt đang hoạt động</h4>
+                        {data.buses.filter(bus => bus.status === 'Đang hoạt động').map(bus => (
+                            <div key={bus.id} className="student-item">
+                                <div>
+                                    <strong>{bus.name}</strong> - {bus.route} - Tài xế: {bus.driver}
+                                </div>
+                                <button onClick={() => alert(`Cập nhật vị trí cho xe ${bus.id}`)} className="btn btn-success">Cập nhật vị trí</button>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
+
+            {activeTab === 'overviewparent' && (
+                <div className="panel-content">
+                    <div className="info-card">
+                        <h4>Tổng quan phụ huynh</h4>
+                        <table className="table table-striped">
+                            <tbody>
+                                <tr>
+                                    <td>Tên phụ huynh</td>
+                                    <td>{data.buses.length}</td>
+                                </tr>
+                                <tr>
+                                    <td>Số con</td>
+                                    <td>{data.students.length}</td>
+                                </tr>
+                                <tr>
+                                    <td>Địa chỉ</td>
+                                    <td>{data.drivers.length}</td>
+                                </tr>
+                                <tr>
+                                    <td>Tên của con</td>
+                                      {(() => {
+                                        const children = data.students.filter(s => s.parentPhone === '0998-901-234');
+                                        return children.length > 0 ? (
+                                            children.map(child => (
+                                            <tr key={child.id}>
+                                                <td>{child.name}</td>
+                                            </tr>
+                                            ))
+                                        ) : (
+                                            <tr><td>Không tìm thấy học sinh</td></tr>
+                                        );
+                                        })()}
+
+                                </tr>
+                                <tr>
+                                    <td>Số điện thoại</td>
                                     <td>{data.routes.length}</td>
                                 </tr>
                             </tbody>
