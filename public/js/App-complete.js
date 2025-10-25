@@ -1,3 +1,5 @@
+
+
 const { useState } = React;
 
 const mockData = {
@@ -122,16 +124,19 @@ const ManagerDashboard = ({ data }) => {
         alert('Lịch trình tháng đã được tạo và lưu thành công!');
     };
 
+
     return (
         <div>
             <h3 className="panel-title">Bảng điều khiển Quản lý</h3>
             <div className="tab-buttons">
-                <button onClick={() => setActiveTab('overview')} className={`btn ${activeTab === 'overview' ? 'btn-primary' : 'btn-secondary'}`}>Tổng quan</button>
-                <button onClick={() => setActiveTab('lists')} className={`btn ${activeTab === 'lists' ? 'btn-primary' : 'btn-secondary'}`}>Danh sách</button>
-                <button onClick={() => setActiveTab('manage')} className={`btn ${activeTab === 'manage' ? 'btn-primary' : 'btn-secondary'}`}>Quản lý</button>
-                <button onClick={() => setActiveTab('messages')} className={`btn ${activeTab === 'messages' ? 'btn-primary' : 'btn-secondary'}`}>Tin nhắn</button>
-                <button onClick={() => setActiveTab('overviewparent')} className={`btn ${activeTab === 'overviewparent' ? 'btn-primary' : 'btn-secondary'}`}>Phụ huynh</button>
+                <button onClick={() => setActiveTab('overview')} className={`btn  ${activeTab === 'btn-secondary'}`}>Tổng quan</button>
+                <button onClick={() => setActiveTab('lists')} className={`btn ${activeTab === 'lists' &'btn-secondary'}`}>Danh sách</button>
+                <button onClick={() => setActiveTab('manage')} className={`btn ${activeTab === 'manage' &'btn-secondary'}`}>Quản lý</button>
+                <button onClick={() => setActiveTab('messages')} className={`btn ${activeTab === 'messages' & 'btn-secondary'}`}>Tin nhắn</button>
+                <button onClick={() => setActiveTab('overviewparent')} className={`btn ${activeTab === 'overviewparent' & 'btn-secondary'}`}>Phụ huynh</button>
+                
             </div>
+            
 
             {activeTab === 'overview' && (
                 <div className="panel-content">
@@ -165,7 +170,7 @@ const ManagerDashboard = ({ data }) => {
                                 <div>
                                     <strong>{bus.name}</strong> - {bus.route} - Tài xế: {bus.driver}
                                 </div>
-                                <button onClick={() => alert(`Cập nhật vị trí cho xe ${bus.id}`)} className="btn btn-success">Cập nhật vị trí</button>
+                                <button onClick={() => alert(`Cập nhật vị trí cho xe ${bus.id}`)} className="btn btn-secondary">Cập nhật vị trí</button>
                             </div>
                         ))}
                     </div>
@@ -220,7 +225,7 @@ const ManagerDashboard = ({ data }) => {
                                 <div>
                                     <strong>{bus.name}</strong> - {bus.route} - Tài xế: {bus.driver}
                                 </div>
-                                <button onClick={() => alert(`Cập nhật vị trí cho xe ${bus.id}`)} className="btn btn-success">Cập nhật vị trí</button>
+                                <button onClick={() => alert(`Cập nhật vị trí cho xe ${bus.id}`)} className="btn btn-secondary">Cập nhật vị trí</button>
                             </div>
                         ))}
                     </div>
@@ -282,8 +287,8 @@ const ManagerDashboard = ({ data }) => {
                 <div className="panel-content">
                     <div className="info-card">
                         <h4>Tạo/Cập nhật Lịch trình</h4>
-                        <button onClick={generateWeeklySchedule} className="btn btn-info" style={{marginRight: '0.5rem'}}>Tạo lịch trình tuần</button>
-                        <button onClick={generateMonthlySchedule} className="btn btn-info">Tạo lịch trình tháng</button>
+                        <button onClick={generateWeeklySchedule} className="btn btn-secondary" style={{marginRight: '0.5rem'}}>Tạo lịch trình tuần</button>
+                        <button onClick={generateMonthlySchedule} className="btn btn-secondary">Tạo lịch trình tháng</button>
                     </div>
                     {schedule && (
                         <div className="info-card" style={{marginTop: '1rem'}}>
@@ -347,10 +352,10 @@ const DriverDashboard = ({ data }) => {
                             </div>
                             <div>
                                 {student.status === 'Chưa đón' && (
-                                    <button onClick={() => alert(`Đã báo cáo đón học sinh ${student.id}`)} className="btn btn-success">Báo cáo đón</button>
+                                    <button onClick={() => alert(`Đã báo cáo đón học sinh ${student.id}`)} className="btn btn-secondary">Báo cáo đón</button>
                                 )}
                                 {student.status === 'Đã đón' && (
-                                    <button onClick={() => alert(`Đã báo cáo trả học sinh ${student.id}`)} className="btn btn-info">Báo cáo trả</button>
+                                    <button onClick={() => alert(`Đã báo cáo trả học sinh ${student.id}`)} className="btn btn-secondary">Báo cáo trả</button>
                                 )}
                             </div>
                         </div>
@@ -510,7 +515,7 @@ function App() {
                         position: 'relative'
                     }}>
                         <div style={{ position: 'absolute', top: '1rem', right: '1rem', display: 'flex', gap: '0.5rem' }}>
-                            <button className="btn btn-link" style={{ fontSize: '2rem', padding: '0.25rem 0.5rem' }} onClick={() => alert("🚌 HỆ THỐNG THEO DÕI XE BUÝT TRƯỜNG HỌC THÔNG MINH - SSB 1.0\n\n" +
+                            <button className="btn btn-link" style={{ fontSize: '1.2rem', padding: '0.25rem 0.5rem' }} onClick={() => alert("🚌 HỆ THỐNG THEO DÕI XE BUÝT TRƯỜNG HỌC THÔNG MINH - SSB 1.0\n\n" +
   "🔹 Quản lý:\n" +
   "• Xem tổng quan học sinh, tài xế, xe buýt và tuyến đường\n" +
   "• Tạo và cập nhật lịch trình tuần/tháng\n" +
@@ -527,37 +532,37 @@ function App() {
   "• Nhận thông báo khi xe đến gần điểm đón\n" +
   "• Nhận cảnh báo nếu xe trễ hoặc có sự cố\n\n" +
   "💡 Hệ thống hỗ trợ thời gian thực cho tối đa 300 xe, có thể mở rộng cho web và mobile.")}>Tính năng</button>
-                            <button className="btn btn-link" style={{ fontSize: '2rem', padding: '0.25rem 0.5rem' }} onClick={() => alert('Liên hệ')}>Liên hệ</button>
-                            <button className="btn btn-link" style={{ fontSize: '2rem', padding: '0.25rem 0.5rem' }} onClick={handleAboutClick}>Về chúng tôi</button>
+                            <button className="btn btn-link" style={{ fontSize: '1.2rem', padding: '0.25rem 0.5rem' }} onClick={() => alert('Nguyễn Thành Nam - nnam62673@gmail.com')}>Liên hệ</button>
+                            <button className="btn btn-link" style={{ fontSize: '1.2rem', padding: '0.25rem 0.5rem' }} onClick={handleAboutClick}>Về chúng tôi</button>
                         </div>
                         <h1 style={{ color: '#1e5799', marginBottom: '2rem', fontSize: '3rem' }}>SSB 1.0</h1>
                         <h1 style={{ marginBottom: '2rem', color: '#555', padding :'0.75rem 0rem', }}>Hệ thống theo dõi xe buýt trường học thông minh</h1>
                         <p style={{ marginBottom: '2rem', fontSize: '2rem' }}>Chọn vai trò của bạn để tiếp tục</p>
                         <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem', justifyContent: 'center', marginBottom: '1rem' }}>
                             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                <button onClick={() => handleRoleSelect('parent')} className="btn btn-primary" style={{ padding: '0.75rem 1.2rem', fontSize: '1.1rem' }}>
+                                <button onClick={() => handleRoleSelect('parent')} className="btn btn-primary" style={{ padding: '0.75rem 1.2rem', fontSize: '1.5rem',width:'170px' }}>
                                     Phụ huynh
                                 </button>
-                                <div style={{ fontSize: '0.9rem', color: '#666', marginTop: '0.5rem', textAlign: 'center', padding: '0.75rem 0.5rem' }}>
+                                {/* <div style={{ fontSize: '0.9rem', color: '#666', marginTop: '0.5rem', textAlign: 'center', padding: '0.75rem 0.5rem',fontSize: '1rem' }}>
                                     <p class="Description-PH">Theo dõi tuyến xe buýt.<br></br>
                                          Nhận thông báo khi xe đến điểm đưa, đón và cảnh báo cho Phụ huynh.</p>
-                                </div>
+                                </div> */}
                             </div>
                             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                <button onClick={() => handleRoleSelect('driver')} className="btn btn-success" style={{ padding: '0.75rem 1.5rem', fontSize: '1.1rem' }}>
+                                <button onClick={() => handleRoleSelect('driver')} className="btn btn-success" style={{ padding: '0.75rem 1.5rem', fontSize: '1.5rem' }}>
                                     Tài xế
                                 </button>
-                                <div style={{ fontSize: '0.9rem', color: '#666', marginTop: '0.5rem', textAlign: 'center', padding: '0.75rem 1.5rem' }}>
+                                {/* <div style={{ fontSize: '0.9rem', color: '#666', marginTop: '0.5rem', textAlign: 'center', padding: '0.75rem 1.5rem',fontSize: '1rem',width: '150px' }}>
                                     <p class="Description-TX">Lịch trình, hành trình di chuyển hàng ngày, thông tin cho Phụ Huynh về học sinh.</p>
-                                </div>
+                                </div> */}
                             </div>
                             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                <button onClick={() => handleRoleSelect('manager')} className="btn btn-info" style={{ padding: '0.75rem 1.4rem', fontSize: '1.1rem' }}>
+                                <button onClick={() => handleRoleSelect('manager')} className="btn btn-info" style={{ padding: '0.75rem 1.4rem', fontSize: '1.5rem' }}>
                                     Quản lý
                                 </button>
-                                <div style={{ fontSize: '0.9rem', color: '#666', marginTop: '0.5rem', textAlign: 'center', padding: '0.75rem 1.1rem' }}>
+                                {/* <div style={{ fontSize: '0.9rem', color: '#666', marginTop: '0.5rem', textAlign: 'center', padding: '0.75rem 1.1rem',fontSize: '1rem' }}>
                                     <p class="Description-QL">Xem danh sách học sinh, tài xế xe buýt và tuyến đường.</p>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>
@@ -579,7 +584,7 @@ function App() {
                         padding: '2rem 3rem',
                         borderRadius: '10px',
                         boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
-                        width: '350px',
+                        width: '550px',
                         textAlign: 'center'
                     }}>
                         <h2 style={{ color: '#1e5799', marginBottom: '0.5rem' }}>Đăng nhập SSB 1.0</h2>
@@ -607,7 +612,7 @@ function App() {
                                     className="form-control"
                                 />
                             </div>
-                            <button type="submit" className="btn btn-primary" style={{ width: '100%', marginBottom: '1rem' }}>
+                            <button type="submit" className="btn btn-secondary " style={{ width: '100%', marginBottom: '1rem' }}>
                                 Đăng nhập
                             </button>
                             <button type="button" onClick={handleBackToLanding} className="btn btn-secondary" style={{ width: '100%' }}>
