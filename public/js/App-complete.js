@@ -143,22 +143,22 @@ const ManagerDashboard = ({ data }) => {
                     <div className="info-card">
                         <h4>Tổng quan hệ thống</h4>
                         <table className="table table-striped">
-                            <tbody>
+                              <tbody>
                                 <tr>
-                                    <td>Số xe buýt</td>
-                                    <td>{data.buses.length}</td>
+                                <td>Số xe buýt</td>
+                                <td>{data.buses.length}</td>
                                 </tr>
                                 <tr>
-                                    <td>Số học sinh</td>
-                                    <td>{data.students.length}</td>
+                                <td>Số học sinh</td>
+                                <td>{data.students.length}</td>
                                 </tr>
                                 <tr>
-                                    <td>Số tài xế</td>
-                                    <td>{data.drivers.length}</td>
+                                <td>Số tài xế</td>
+                                <td>{data.drivers.length}</td>
                                 </tr>
                                 <tr>
-                                    <td>Số tuyến đường</td>
-                                    <td>{data.routes.length}</td>
+                                <td>Số tuyến đường</td>
+                                <td>{data.routes.length}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -238,12 +238,13 @@ const ManagerDashboard = ({ data }) => {
                         <h4>Danh sách Học sinh</h4>
                         <table className="table table-striped">
                             <thead>
-                                <tr>
-                                    <th>Tên học sinh</th>
-                                    <th>Lớp</th>
-                                    <th>Xe buýt</th>
-                                    <th>Điểm đón</th>
+                              <tr>
+                                <th style={{ padding: '12px 24px' }}>Tên học sinh</th>
+                                <th style={{ padding: '12px 24px' }}>Lớp</th>
+                                <th style={{ padding: '12px 24px' }}>Xe buýt</th>
+                                <th style={{ padding: '12px 24px' }}>Điểm đón</th>
                                 </tr>
+
                             </thead>
                             <tbody>
                                 {data.students.map(student => (
@@ -501,7 +502,9 @@ function App() {
                     justifyContent: 'center',
                     alignItems: 'center',
                     background: 'linear-gradient(135deg, #2488df 0%, #b6a4ff 100%)',
-                    // background: 'linear-gradient(135deg, #1e5799 0%, #207cca 100%)',
+                    backgroundSize: 'cover',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'center',
                     color: 'white'
                 }}>
                     <div style={{
