@@ -723,7 +723,7 @@ function App() {
 </table>
 
 
-                        <button onClick={handleBackToLanding} className="btn btn-primary" style={{ marginTop: '2rem' }}>Quay lại</button>
+                        <button onClick={handleBackToLanding} className="btn btn-secondary" style={{ marginTop: '2rem' }}>Quay lại</button>
 
                     </div>
 
