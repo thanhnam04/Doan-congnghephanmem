@@ -66,7 +66,12 @@ const mockData = {
     ],
     alerts: [
         { id: 1, type: 'delay', message: 'Xe 01 bị trễ 10 phút do tắc đường', time: '7:50 AM' }
-    ]
+    ],
+    parents: [
+        { id: 1, name: 'Nguyễn Văn An', phone: '0123-456-789', children: 1 },
+        { id: 2, name: 'Trần Thị Bích', phone: '0987-654-321', children: 1 },
+        { id: 3 , name: 'Lê Văn Cường', phone: '0912-345-678', children: 1}
+    ],
 };
 
 const accounts = [
@@ -180,35 +185,28 @@ const ManagerDashboard = ({ data }) => {
                             <tbody>
                                 <tr>
                                     <td>Tên phụ huynh</td>
-                                    <td>{data.buses.length}</td>
+                                    <td>{data.parents.find(p => p.id === 2)?.name}</td>
                                 </tr>
                                 <tr>
-                                    <td>Số con</td>
-                                    <td>{data.students.length}</td>
+                                    <td>Số con </td>
+                                    <td>{data.parents.find(p => p.id === 2)?.children}</td>
                                 </tr>
                                 <tr>
-                                    <td>Địa chỉ</td>
-                                    <td>{data.drivers.length}</td>
+                                <td>Tên của con </td>
+                                <td>
+                                    {(() => {
+                                    const parent = data.parents.find(p => p.id === 2);
+                                    const phone = parent?.phone;
+                                    const children = data.students.filter(s => s.parentPhone === phone);
+                                    return children.length > 0
+                                        ? children.map(child => child.name).join(', ')
+                                        : 'Không tìm thấy học sinh';
+                                    })()}
+                                </td>
                                 </tr>
                                 <tr>
-                                    <td>Tên của con</td>
-                                      {(() => {
-                                        const children = data.students.filter(s => s.parentPhone === '0998-901-234');
-                                        return children.length > 0 ? (
-                                            children.map(child => (
-                                            <tr key={child.id}>
-                                                <td>{child.name}</td>
-                                            </tr>
-                                            ))
-                                        ) : (
-                                            <tr><td>Không tìm thấy học sinh</td></tr>
-                                        );
-                                        })()}
-
-                                </tr>
-                                <tr>
-                                    <td>Số điện thoại</td>
-                                    <td>{data.routes.length}</td>
+                                    <td>Số điện thoại </td>
+                                    <td>{data.parents.find(p => p.id === 2)?.phone}</td>
                                 </tr>
                             </tbody>
                         </table>
