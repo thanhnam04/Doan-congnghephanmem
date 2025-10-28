@@ -1,5 +1,16 @@
 # Smart School Bus Tracking System (SSB 1.0) - Public Folder Documentation
 
+  NGUYỄN THÀNH NAM, PHẠM KIM CHUNG: COMPONENT MANAGERDASHBOARD
+    - Làm giao diện thân thiện dễ dùng và tiện lợi.
+
+  TRẦN ĐỨC ANH: COMPONENT PARENTDASHBOARD
+    - Làm giao diện thân thiện dễ dùng và tiện lợi.
+
+  BÙI TẤN PHÁT: COMPONENT DRIVERDASHBOARD
+    - Làm giao diện thân thiện dễ dùng và tiện lợi.
+
+
+
 ## Tổng quan Dự án
 Dự án **Smart School Bus Tracking System (SSB 1.0)** là một hệ thống theo dõi xe buýt trường học thông minh được xây dựng bằng React. Hệ thống hỗ trợ ba vai trò chính: Quản lý, Tài xế và Phụ huynh, với các chức năng như theo dõi vị trí xe buýt thời gian thực, quản lý lịch trình, gửi thông báo và cảnh báo.
 
@@ -10,6 +21,8 @@ Thư mục `public` chứa các tệp tĩnh và mã nguồn frontend của ứng
 public/
 ├── index-complete.html          # Tệp HTML chính (phiên bản hoàn chỉnh)
 ├── index.html                   # Tệp HTML đơn giản (phiên bản cơ bản)
+├── component/
+│   └── frontend.tsx             # Component React bằng TypeScript
 ├── css/
 │   ├── index-complete.css       # CSS cho phiên bản hoàn chỉnh
 │   └── style.css                # CSS cho phiên bản cơ bản
@@ -17,7 +30,8 @@ public/
 │   ├── App-complete.js          # Ứng dụng React chính (hoàn chỉnh)
 │   ├── DriverDashboard.js       # Component bảng điều khiển Tài xế
 │   ├── ManagerDashboard.js      # Component bảng điều khiển Quản lý
-│   └── ParentDashboard.js       # Component bảng điều khiển Phụ huynh
+│   ├── ParentDashboard.js       # Component bảng điều khiển Phụ huynh
+│   └── phuluc.js                # Tệp JavaScript bổ sung
 ├── img/
 │   └── BackgroundSSB.png        # Hình nền cho hệ thống
 └── src/
@@ -102,9 +116,17 @@ public/
 - **Nội dung**: (Tương tự)
 
 ### 4. Thư mục Khác
+#### `component/frontend.tsx`
+- **Mục đích**: Component React được viết bằng TypeScript.
+- **Nội dung**: Có thể là phiên bản TypeScript của một component frontend.
+
 #### `img/BackgroundSSB.png`
 - **Mục đích**: Hình nền cho hệ thống SSB.
 - **Sử dụng**: Có thể dùng trong CSS hoặc làm background.
+
+#### `js/phuluc.js`
+- **Mục đích**: Tệp JavaScript bổ sung.
+- **Nội dung**: Có thể chứa các hàm hoặc mã hỗ trợ bổ sung cho ứng dụng.
 
 #### `src/components/`
 - **Mục đích**: Thư mục để chứa các React components tách riêng.
