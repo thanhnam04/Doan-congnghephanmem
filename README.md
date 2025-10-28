@@ -9,6 +9,26 @@
   BÙI TẤN PHÁT: COMPONENT DRIVERDASHBOARD
     - Làm giao diện thân thiện dễ dùng và tiện lợi.
 
+## Phân chia UML code
+Nguyễn Thành Nam
+
+21.puml
+21a-copy.puml
+21a.puml
+
+Phạm Kim Chung
+22.puml
+23.puml
+
+Trần Đức Anh
+32.puml
+phuhuynh.puml
+quanlixebuyt(1).puml
+
+Bùi Tấn Phát
+taixe.puml
+usecaseWholesystem.puml
+
 
 
 ## Tổng quan Dự án
