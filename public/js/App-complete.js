@@ -1,6 +1,5 @@
-
-
 const { useState } = React;
+
 
 const mockData = {
     buses: [
@@ -10,45 +9,58 @@ const mockData = {
         { id: 4, name: '04', route: 'Tuyến D', driver: 'Bùi Tấn Phát', status: 'Đang hoạt động', location: '12.340, 106.702' }
     ],
     students: [
-        { id: 1, name: 'Nguyễn Minh An', grade: 'Lớp 1A', bus: 'Xe 01', pickup: 'Điểm A1', status: 'Đã đón', parentPhone: '0123-456-789' },
-        { id: 2, name: 'Trần Quốc Bảo', grade: 'Lớp 2B', bus: 'Xe 01', pickup: 'Điểm A2', status: 'Chưa đón', parentPhone: '0987-654-321' },
-        { id: 3, name: 'Lê Thị Cẩm', grade: 'Lớp 3C', bus: 'Xe 02', pickup: 'Điểm B1', status: 'Đã đón', parentPhone: '0912-345-678' },
-        { id: 4, name: 'Phạm Văn Phúc', grade: 'Lớp 1A', bus: 'Xe 01', pickup: 'Điểm A3', status: 'Chưa đón', parentPhone: '0934-567-890' },
-        { id: 5, name: 'Hoàng Thị Dung', grade: 'Lớp 1B', bus: 'Xe 02', pickup: 'Điểm B2', status: 'Đã đón', parentPhone: '0956-789-012' },
-        { id: 6, name: 'Đỗ Văn Minh', grade: 'Lớp 2A', bus: 'Xe 03', pickup: 'Điểm C1', status: 'Chưa đón', parentPhone: '0978-901-234' },
-        { id: 7, name: 'Bùi Thị Lan', grade: 'Lớp 3A', bus: 'Xe 04', pickup: 'Điểm D1', status: 'Đã đón', parentPhone: '0990-123-456' },
-        { id: 8, name: 'Vũ Quốc Anh', grade: 'Lớp 1A', bus: 'Xe 01', pickup: 'Điểm A1', status: 'Chưa đón', parentPhone: '0911-234-567' },
-        { id: 9, name: 'Ngô Thị Mai', grade: 'Lớp 2B', bus: 'Xe 02', pickup: 'Điểm B3', status: 'Đã đón', parentPhone: '0933-456-789' },
-        { id: 10, name: 'Đinh Văn Tùng', grade: 'Lớp 3C', bus: 'Xe 03', pickup: 'Điểm C2', status: 'Chưa đón', parentPhone: '0955-678-901' },
-        { id: 11, name: 'Trần Thị Hoa', grade: 'Lớp 1B', bus: 'Xe 04', pickup: 'Điểm D2', status: 'Đã đón', parentPhone: '0977-890-123' },
-        { id: 12, name: 'Lê Văn Sơn', grade: 'Lớp 2A', bus: 'Xe 01', pickup: 'Điểm A2', status: 'Chưa đón', parentPhone: '0999-012-345' },
-        { id: 13, name: 'Phạm Thị Linh', grade: 'Lớp 3B', bus: 'Xe 02', pickup: 'Điểm B1', status: 'Đã đón', parentPhone: '0910-123-456' },
-        { id: 14, name: 'Hoàng Văn Đức', grade: 'Lớp 1A', bus: 'Xe 03', pickup: 'Điểm C3', status: 'Chưa đón', parentPhone: '0932-345-678' },
-        { id: 15, name: 'Đỗ Thị Nga', grade: 'Lớp 2C', bus: 'Xe 04', pickup: 'Điểm D3', status: 'Đã đón', parentPhone: '0954-567-890' },
-        { id: 16, name: 'Bùi Văn Hùng', grade: 'Lớp 3A', bus: 'Xe 01', pickup: 'Điểm A3', status: 'Chưa đón', parentPhone: '0976-789-012' },
-        { id: 17, name: 'Vũ Thị Thu', grade: 'Lớp 1B', bus: 'Xe 02', pickup: 'Điểm B2', status: 'Đã đón', parentPhone: '0998-901-234' },
-        { id: 18, name: 'Ngô Văn Long', grade: 'Lớp 2A', bus: 'Xe 03', pickup: 'Điểm C1', status: 'Chưa đón', parentPhone: '0912-123-456' },
-        { id: 19, name: 'Đinh Thị Hạnh', grade: 'Lớp 3C', bus: 'Xe 04', pickup: 'Điểm D1', status: 'Đã đón', parentPhone: '0934-345-678' },
-        { id: 20, name: 'Trần Văn Tâm', grade: 'Lớp 1A', bus: 'Xe 01', pickup: 'Điểm A1', status: 'Chưa đón', parentPhone: '0956-567-890' },
-        { id: 21, name: 'Lê Thị Vân', grade: 'Lớp 2B', bus: 'Xe 02', pickup: 'Điểm B3', status: 'Đã đón', parentPhone: '0978-789-012' },
-        { id: 22, name: 'Phạm Văn Khoa', grade: 'Lớp 3A', bus: 'Xe 03', pickup: 'Điểm C2', status: 'Chưa đón', parentPhone: '0990-901-234' },
-        { id: 23, name: 'Hoàng Thị Trang', grade: 'Lớp 1B', bus: 'Xe 04', pickup: 'Điểm D2', status: 'Đã đón', parentPhone: '0911-123-456' },
-        { id: 24, name: 'Đỗ Văn Huy', grade: 'Lớp 2C', bus: 'Xe 01', pickup: 'Điểm A2', status: 'Chưa đón', parentPhone: '0933-345-678' },
-        { id: 25, name: 'Bùi Thị Hà', grade: 'Lớp 3B', bus: 'Xe 02', pickup: 'Điểm B1', status: 'Đã đón', parentPhone: '0955-567-890' },
-        { id: 26, name: 'Vũ Văn Nam', grade: 'Lớp 1A', bus: 'Xe 03', pickup: 'Điểm C3', status: 'Chưa đón', parentPhone: '0977-789-012' },
-        { id: 27, name: 'Ngô Thị Lan', grade: 'Lớp 2A', bus: 'Xe 04', pickup: 'Điểm D3', status: 'Đã đón', parentPhone: '0999-901-234' },
-        { id: 28, name: 'Đinh Văn Bình', grade: 'Lớp 3C', bus: 'Xe 01', pickup: 'Điểm A3', status: 'Chưa đón', parentPhone: '0910-123-456' },
-        { id: 29, name: 'Trần Thị Mai', grade: 'Lớp 1B', bus: 'Xe 02', pickup: 'Điểm B2', status: 'Đã đón', parentPhone: '0932-345-678' },
-        { id: 30, name: 'Lê Văn Tùng', grade: 'Lớp 2B', bus: 'Xe 03', pickup: 'Điểm C1', status: 'Chưa đón', parentPhone: '0954-567-890' },
-        { id: 31, name: 'Phạm Thị Hoa', grade: 'Lớp 3A', bus: 'Xe 04', pickup: 'Điểm D1', status: 'Đã đón', parentPhone: '0976-789-012' },
-        { id: 32, name: 'Hoàng Văn Sơn', grade: 'Lớp 1A', bus: 'Xe 01', pickup: 'Điểm A1', status: 'Chưa đón', parentPhone: '0998-901-234' },
-        { id: 33, name: 'Đỗ Thị Linh', grade: 'Lớp 2C', bus: 'Xe 02', pickup: 'Điểm B3', status: 'Đã đón', parentPhone: '0912-123-456' },
-        { id: 34, name: 'Bùi Văn Đức', grade: 'Lớp 3B', bus: 'Xe 03', pickup: 'Điểm C2', status: 'Chưa đón', parentPhone: '0934-345-678' },
-        { id: 35, name: 'Vũ Thị Nga', grade: 'Lớp 1B', bus: 'Xe 04', pickup: 'Điểm D2', status: 'Đã đón', parentPhone: '0956-567-890' },
-        { id: 36, name: 'Ngô Văn Hùng', grade: 'Lớp 2A', bus: 'Xe 01', pickup: 'Điểm A2', status: 'Chưa đón', parentPhone: '0978-789-012' },
-        { id: 37, name: 'Đinh Thị Thu', grade: 'Lớp 3C', bus: 'Xe 02', pickup: 'Điểm B1', status: 'Đã đón', parentPhone: '0990-901-234' },
-        { id: 38, name: 'Trần Văn Long', grade: 'Lớp 1A', bus: 'Xe 03', pickup: 'Điểm C3', status: 'Chưa đón', parentPhone: '0911-123-456' },
-        { id: 39, name: 'Lê Thị Hạnh', grade: 'Lớp 2B', bus: 'Xe 04', pickup: 'Điểm D3', status: 'Đã đón', parentPhone: '0933-345-678' }
+                    { id: 1,  name: 'Nguyễn Minh An',       grade: 'Lớp 1A', bus: 'Xe 01', pickup: 'Điểm A1', status: 'Đã đón',   parentPhone: '0123-456-789' },
+
+                    { id: 2,  name: 'Trần Quốc Bảo',        grade: 'Lớp 2B', bus: 'Xe 02', pickup: 'Điểm B1', status: 'Chưa đón', parentPhone: '0987-654-321' },
+                    { id: 2,  name: 'Lê Thị Cẩm',           grade: 'Lớp 3A', bus: 'Xe 03', pickup: 'Điểm C1', status: 'Đã đón',   parentPhone: '0987-654-321' },
+
+                    { id: 3,  name: 'Phạm Văn Phúc',        grade: 'Lớp 1A', bus: 'Xe 01', pickup: 'Điểm A2', status: 'Chưa đón', parentPhone: '0934-567-890' },
+                    { id: 3,  name: 'Phạm Thị Dung',        grade: 'Lớp 3B', bus: 'Xe 01', pickup: 'Điểm A3', status: 'Đã đón',   parentPhone: '0934-567-890' },
+
+                    { id: 4,  name: 'Võ Minh Đức',          grade: 'Lớp 2A', bus: 'Xe 02', pickup: 'Điểm B2', status: 'Đã đón',   parentPhone: '0978-112-233' },
+                    { id: 4,  name: 'Đỗ Thị Hồng',          grade: 'Lớp 1B', bus: 'Xe 03', pickup: 'Điểm C1', status: 'Đã đón',   parentPhone: '0903-445-667' },
+
+                    { id: 5,  name: 'Đỗ Văn Minh',          grade: 'Lớp 2C', bus: 'Xe 03', pickup: 'Điểm C2', status: 'Chưa đón', parentPhone: '0903-445-667' },
+                    { id: 5,  name: 'Bùi Quang Huy',        grade: 'Lớp 3C', bus: 'Xe 04', pickup: 'Điểm D1', status: 'Đã đón',   parentPhone: '0966-778-899' },
+
+                    { id: 6,  name: 'Ngô Thị Kim',          grade: 'Lớp 1A', bus: 'Xe 01', pickup: 'Điểm A1', status: 'Đã đón',   parentPhone: '0944-332-211' },
+                    { id: 6,  name: 'Huỳnh Văn Lâm',        grade: 'Lớp 2A', bus: 'Xe 02', pickup: 'Điểm B3', status: 'Chưa đón', parentPhone: '0982-765-432' },
+
+                    { id: 7,  name: 'Huỳnh Thị Mai',        grade: 'Lớp 3B', bus: 'Xe 02', pickup: 'Điểm B2', status: 'Đã đón',   parentPhone: '0982-765-432' },
+                    { id: 7,  name: 'Đặng Thị Lan',         grade: 'Lớp 2C', bus: 'Xe 03', pickup: 'Điểm C3', status: 'Đã đón',   parentPhone: '0918-654-210' },
+
+                    { id: 8,  name: 'Nguyễn Thị Mai',       grade: 'Lớp 3A', bus: 'Xe 04', pickup: 'Điểm D2', status: 'Đã đón',   parentPhone: '0909-221-334' },
+                    { id: 8,  name: 'Trương Quốc Nam',      grade: 'Lớp 1A', bus: 'Xe 01', pickup: 'Điểm A2', status: 'Chưa đón', parentPhone: '0938-776-655' },
+
+                    { id: 9,  name: 'Trương Thị Yến',       grade: 'Lớp 2B', bus: 'Xe 01', pickup: 'Điểm A3', status: 'Đã đón',   parentPhone: '0938-776-655' },
+                    { id: 9,  name: 'Phan Thị Ngọc',        grade: 'Lớp 3C', bus: 'Xe 02', pickup: 'Điểm B1', status: 'Đã đón',   parentPhone: '0949-889-778' },
+
+                    { id: 10, name: 'Hoàng Văn Phúc',       grade: 'Lớp 1B', bus: 'Xe 03', pickup: 'Điểm C1', status: 'Chưa đón', parentPhone: '0973-225-446' },
+                    { id: 10, name: 'Lưu Thị Quỳnh',        grade: 'Lớp 2A', bus: 'Xe 04', pickup: 'Điểm D3', status: 'Đã đón',   parentPhone: '0988-554-433' },
+
+                    { id: 11, name: 'Lưu Văn Tân',          grade: 'Lớp 3B', bus: 'Xe 04', pickup: 'Điểm D2', status: 'Chưa đón', parentPhone: '0988-554-433' },
+                    { id: 11, name: 'Đoàn Văn Sơn',         grade: 'Lớp 1A', bus: 'Xe 01', pickup: 'Điểm A1', status: 'Đã đón',   parentPhone: '0922-667-889' },
+
+                    { id: 12, name: 'Mai Thị Tâm',          grade: 'Lớp 2C', bus: 'Xe 02', pickup: 'Điểm B3', status: 'Đã đón',   parentPhone: '0907-998-877' },
+                    { id: 12, name: 'Mai Văn Quang',        grade: 'Lớp 3A', bus: 'Xe 02', pickup: 'Điểm B2', status: 'Chưa đón', parentPhone: '0907-998-877' },
+
+                    { id: 13, name: 'Nguyễn Thành Trung',   grade: 'Lớp 1B', bus: 'Xe 03', pickup: 'Điểm C2', status: 'Đã đón',   parentPhone: '0964-111-222' },
+                    { id: 13, name: 'Phạm Thị Vân',         grade: 'Lớp 2B', bus: 'Xe 04', pickup: 'Điểm D1', status: 'Chưa đón', parentPhone: '0910-333-444' },
+
+                    { id: 14, name: 'Lê Quốc Việt',         grade: 'Lớp 1A', bus: 'Xe 01', pickup: 'Điểm A3', status: 'Đã đón',   parentPhone: '0933-555-666' },
+                    { id: 14, name: 'Lê Thị Yến',           grade: 'Lớp 3C', bus: 'Xe 01', pickup: 'Điểm A2', status: 'Chưa đón', parentPhone: '0933-555-666' },
+
+                    // ---- thêm 10 học sinh mới ----
+                    { id: 15, name: 'Phạm Văn Long',        grade: 'Lớp 1C', bus: 'Xe 02', pickup: 'Điểm B4', status: 'Đã đón',   parentPhone: '0901-777-888' },
+                    { id: 16, name: 'Võ Thị Hương',         grade: 'Lớp 2A', bus: 'Xe 03', pickup: 'Điểm C2', status: 'Chưa đón', parentPhone: '0973-444-555' },
+                    { id: 17, name: 'Trần Văn Hòa',         grade: 'Lớp 3B', bus: 'Xe 04', pickup: 'Điểm D3', status: 'Đã đón',   parentPhone: '0919-123-456' },
+                    { id: 18, name: 'Ngô Thị Linh',         grade: 'Lớp 2C', bus: 'Xe 01', pickup: 'Điểm A4', status: 'Đã đón',   parentPhone: '0988-321-654' },
+                    { id: 19, name: 'Đinh Minh Khang',      grade: 'Lớp 1A', bus: 'Xe 02', pickup: 'Điểm B2', status: 'Chưa đón', parentPhone: '0977-888-222' },
+                    { id: 20, name: 'Phan Hoàng Yến',       grade: 'Lớp 2B', bus: 'Xe 03', pickup: 'Điểm C3', status: 'Đã đón',   parentPhone: '0923-567-890' },
+                    { id: 20, name: 'Đặng Văn Trí',         grade: 'Lớp 3C', bus: 'Xe 04', pickup: 'Điểm D4', status: 'Đã đón',   parentPhone: '0923-567-890' },
+                    { id: 19, name: 'Phạm Thu Hà',          grade: 'Lớp 2A', bus: 'Xe 01', pickup: 'Điểm A2', status: 'Đã đón',   parentPhone: '0910-333-444' },
+                    { id: 18, name: 'Nguyễn Phúc An',       grade: 'Lớp 3B', bus: 'Xe 02', pickup: 'Điểm B3', status: 'Chưa đón', parentPhone: '0964-111-222' },
+                    { id: 15, name: 'Phạm Hải Minh',        grade: 'Lớp 1B', bus: 'Xe 01', pickup: 'Điểm A1', status: 'Đã đón',   parentPhone: '0901-777-888' },
     ],
     drivers: [
         { id: 1, name: 'Nguyễn Thành Nam', phone: '0123-456-789', bus: 'Xe 01', status: 'Đang làm việc' },
@@ -70,9 +82,26 @@ const mockData = {
         { id: 1, type: 'delay', message: 'Xe 01 bị trễ 10 phút do tắc đường', time: '7:50 AM' }
     ],
     parents: [
-        { id: 1, name: 'Nguyễn Văn An', phone: '0123-456-789', children: 1 },
-        { id: 2, name: 'Trần Thị Bích', phone: '0987-654-321', children: 1 },
-        { id: 3 , name: 'Lê Văn Cường', phone: '0912-345-678', children: 1}
+            { id: 1,  name: 'Nguyễn Văn An',      phone: '0123-456-789', children: 2 },
+            { id: 2,  name: 'Trần Thị Bích',      phone: '0987-654-321', children: 2 },
+            { id: 3,  name: 'Lê Văn Cường',       phone: '0912-345-678', children: 1 },
+            { id: 4,  name: 'Phạm Thị Dung',      phone: '0934-567-890', children: 2 },
+            { id: 5,  name: 'Võ Minh Đức',        phone: '0978-112-233', children: 2 },
+            { id: 6,  name: 'Đỗ Thị Hồng',        phone: '0903-445-667', children: 2 },
+            { id: 7,  name: 'Bùi Quang Huy',      phone: '0966-778-899', children: 2 },
+            { id: 8,  name: 'Ngô Thị Kim',        phone: '0944-332-211', children: 2 },
+            { id: 9,  name: 'Huỳnh Văn Lâm',      phone: '0982-765-432', children: 2 },
+            { id: 10, name: 'Đặng Thị Lan',       phone: '0918-654-210', children: 2 },
+            { id: 11, name: 'Nguyễn Thị Mai',     phone: '0909-221-334', children: 2 },
+            { id: 12, name: 'Trương Quốc Nam',    phone: '0938-776-655', children: 2 },
+            { id: 13, name: 'Phan Thị Ngọc',      phone: '0949-889-778', children: 2 },
+            { id: 14, name: 'Hoàng Văn Phúc',     phone: '0973-225-446', children: 2 },
+            { id: 15, name: 'Lưu Thị Quỳnh',      phone: '0988-554-433', children: 2 },
+            { id: 16, name: 'Đoàn Văn Sơn',       phone: '0922-667-889', children: 2 },
+            { id: 17, name: 'Mai Thị Tâm',        phone: '0907-998-877', children: 2 },
+            { id: 18, name: 'Nguyễn Thành Trung', phone: '0964-111-222', children: 2 },
+            { id: 19, name: 'Phạm Thị Vân',       phone: '0910-333-444', children: 2 },
+            { id: 20, name: 'Lê Quốc Việt',       phone: '0933-555-666', children: 2 }
     ],
 };
 //nam ngu
@@ -139,7 +168,7 @@ const ManagerDashboard = ({ data }) => {
                 <button onClick={() => setActiveTab('manage')} className={`btn ${activeTab === 'manage' &'btn-secondary'}`}>Quản lý</button>
                 <button onClick={() => setActiveTab('messages')} className={`btn ${activeTab === 'messages' & 'btn-secondary'}`}>Tin nhắn</button>
                 <button onClick={() => setActiveTab('overviewparent')} className={`btn ${activeTab === 'overviewparent' & 'btn-secondary'}`}>Phụ huynh</button>
-                
+
             </div>
             
 
@@ -326,6 +355,8 @@ const ManagerDashboard = ({ data }) => {
         </div>
     );
 };
+
+
 
 const DriverDashboard = ({ data }) => {
     const driverStudents = data.students.filter(student => student.bus === 'Xe 01');
