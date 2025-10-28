@@ -1,6 +1,6 @@
 const { useState } = React;
 
-
+// NGUYỄN THÀNH NAM - PHẠM KIM CHUNG - TRẦN ĐỨC ANH - BÙI TẤN PHÁT
 const mockData = {
     buses: [
         { id: 1, name: '01', route: 'Tuyến A', driver: 'Nguyễn Thành Nam', status: 'Đang hoạt động', location: '12.345, 106.789' },
@@ -104,13 +104,16 @@ const mockData = {
             { id: 20, name: 'Lê Quốc Việt',       phone: '0933-555-666', children: 2 }
     ],
 };
-//nam ngu
 const accounts = [
     { username: 'manager', password: '123', role: 'manager' },
     { username: 'driver', password: '123', role: 'driver' },
     { username: 'parent', password: '123', role: 'parent' }
 ];
 
+// NGUYỄN THÀNH NAM - PHẠM KIM CHUNG - TRẦN ĐỨC ANH - BÙI TẤN PHÁT
+
+
+//NGUYỄN THÀNH NAM - PHẠM KIM CHUNG
 const ManagerDashboard = ({ data }) => {
     const [activeTab, setActiveTab] = useState('overview');
     const [message, setMessage] = useState('');
@@ -355,9 +358,10 @@ const ManagerDashboard = ({ data }) => {
         </div>
     );
 };
+//NGUYỄN THÀNH NAM - PHẠM KIM CHUNG
 
 
-
+// BÙI TẤN PHÁT
 const DriverDashboard = ({ data }) => {
     const driverStudents = data.students.filter(student => student.bus === 'Xe 01');
 
@@ -399,7 +403,10 @@ const DriverDashboard = ({ data }) => {
         </div>
     );
 };
+// BÙI TẤN PHÁT
 
+
+// TRẦN ĐỨC ANH
 const ParentDashboard = ({ data }) => {
     const childBus = data.buses.find(bus => bus.name === 'Xe 01');
 
@@ -484,6 +491,7 @@ const ParentDashboard = ({ data }) => {
     );
 };
 
+// TRẦN ĐỨC ANH
 
 function App() {
     const [currentView, setCurrentView] = useState('landing');
