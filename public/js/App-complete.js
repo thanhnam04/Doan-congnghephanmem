@@ -1,5 +1,7 @@
 const { useState } = React;
 
+
+
 // NGUYỄN THÀNH NAM - PHẠM KIM CHUNG - TRẦN ĐỨC ANH - BÙI TẤN PHÁT
 const mockData = {
     buses: [
@@ -263,7 +265,7 @@ const ManagerDashboard = ({ data }) => {
             )}
 
             {activeTab === 'lists' && (
-                <div>
+                <div style={{ display: 'flex', gap: '20px' }}>
                     <div className="info-card">
                         <h4>Danh sách Học sinh</h4>
                         <table className="table table-striped">
@@ -288,7 +290,7 @@ const ManagerDashboard = ({ data }) => {
                             </tbody>
                         </table>
                     </div>
-                    <div className="info-card">
+                    <div className="info-card" style={{ flex: 1 }}>
                         <h4>Danh sách Tài xế</h4>
                         <table className="table table-striped">
                             <thead>
